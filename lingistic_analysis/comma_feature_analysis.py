@@ -274,38 +274,18 @@ if __name__ == '__main__':
     human_sentences = sentence_level_ana['human']['sentences']
     human_morphs = sentence_level_ana['human']['morphs']
     human_pos = sentence_level_ana['human']['pos']
-    llama_sentences = sentence_level_ana['llm']['sentences']
-    llama_morphs = sentence_level_ana['llm']['morphs']
-    llama_pos = sentence_level_ana['llm']['pos']
+    llm_sentences = sentence_level_ana['llm']['sentences']
+    llm_morphs = sentence_level_ana['llm']['morphs']
+    llm_pos = sentence_level_ana['llm']['pos']
 
     # Feature Analysis
     human_comma_ana = []
-    gpt_comma_ana = []
-    solar_comma_ana = []
-    qwen_comma_ana = []
-    llama_comma_ana = []
     llm_comma_ana = []
     human_pos_ngram_ana = []
-    gpt_pos_ngram_ana = []
-    solar_pos_ngram_ana = []
-    qwen_pos_ngram_ana = []
-    llama_pos_ngram_ana = []
     llm_pos_ngram_ana = []
     for human_s, human_m, human_p in zip(human_sentences, human_morphs, human_pos):
         human_comma_ana.append(analyze_comma_usage(human_s, human_m, human_p))
         human_pos_ngram_ana.append(analyze_pos_ngram_diversity(human_p))
-    for gpt_s, gpt_m, gpt_p in zip(gpt_sentences, gpt_morphs, gpt_pos):
-        gpt_comma_ana.append(analyze_comma_usage(gpt_s, gpt_m, gpt_p))
-        gpt_pos_ngram_ana.append(analyze_pos_ngram_diversity(gpt_p))
-    for solar_s, solar_m, solar_p in zip(solar_sentences, solar_morphs, solar_pos):
-        solar_comma_ana.append(analyze_comma_usage(solar_s, solar_m, solar_p))
-        solar_pos_ngram_ana.append(analyze_pos_ngram_diversity(solar_p))
-    for qwen_s, qwen_m, qwen_p in zip(qwen_sentences, qwen_morphs, qwen_pos):
-        qwen_comma_ana.append(analyze_comma_usage(qwen_s, qwen_m, qwen_p))
-        qwen_pos_ngram_ana.append(analyze_pos_ngram_diversity(qwen_p))
-    for llama_s, llama_m, llama_p in zip(llama_sentences, llama_morphs, llama_pos):
-        llama_comma_ana.append(analyze_comma_usage(llama_s, llama_m, llama_p))
-        llama_pos_ngram_ana.append(analyze_pos_ngram_diversity(llama_p))
     for llm_s, llm_m, llm_p in zip(llm_sentences, llm_morphs, llm_pos):
         llm_comma_ana.append(analyze_comma_usage(llm_s, llm_m, llm_p))
         llm_pos_ngram_ana.append(analyze_pos_ngram_diversity(llm_p))
@@ -319,42 +299,6 @@ if __name__ == '__main__':
     human_avg_segment_length_per_text = [ana['avg_segment_length_per_text'] for ana in human_comma_ana]
     human_std_segment_length_per_text = [ana['std_segment_length_per_text'] for ana in human_comma_ana]
     human_pos_diversity_score_before_after_comma_per_text = [ana['avg_pos_patterns_diversity_score_per_text'] for ana in human_comma_ana]
-    gpt_comma_include_sentence_rate_per_text = [ana['comma_include_sentence_rate_per_text'] for ana in gpt_comma_ana]
-    gpt_num_comma_include_sentences_per_text = [ana['num_comma_include_sentences_per_text'] for ana in gpt_comma_ana]
-    gpt_total_comma_count_per_text = [ana['total_comma_count_per_text'] for ana in gpt_comma_ana]
-    gpt_avg_comma_usage_rate_per_text = [ana['avg_comma_usage_rate_per_text'] for ana in gpt_comma_ana]
-    gpt_avg_relative_position_per_text = [ana['avg_relative_position_per_text'] for ana in gpt_comma_ana]
-    gpt_std_relative_position_per_text = [ana['std_relative_position_per_text'] for ana in gpt_comma_ana]
-    gpt_avg_segment_length_per_text = [ana['avg_segment_length_per_text'] for ana in gpt_comma_ana]
-    gpt_std_segment_length_per_text = [ana['std_segment_length_per_text'] for ana in gpt_comma_ana]
-    gpt_pos_diversity_score_before_after_comma_per_text = [ana['avg_pos_patterns_diversity_score_per_text'] for ana in gpt_comma_ana]
-    solar_comma_include_sentence_rate_per_text = [ana['comma_include_sentence_rate_per_text'] for ana in solar_comma_ana]
-    solar_num_comma_include_sentences_per_text = [ana['num_comma_include_sentences_per_text'] for ana in solar_comma_ana]
-    solar_total_comma_count_per_text = [ana['total_comma_count_per_text'] for ana in solar_comma_ana]
-    solar_avg_comma_usage_rate_per_text = [ana['avg_comma_usage_rate_per_text'] for ana in solar_comma_ana]
-    solar_avg_relative_position_per_text = [ana['avg_relative_position_per_text'] for ana in solar_comma_ana]
-    solar_std_relative_position_per_text = [ana['std_relative_position_per_text'] for ana in solar_comma_ana]
-    solar_avg_segment_length_per_text = [ana['avg_segment_length_per_text'] for ana in solar_comma_ana]
-    solar_std_segment_length_per_text = [ana['std_segment_length_per_text'] for ana in solar_comma_ana]
-    solar_pos_diversity_score_before_after_comma_per_text = [ana['avg_pos_patterns_diversity_score_per_text'] for ana in solar_comma_ana]
-    qwen_comma_include_sentence_rate_per_text = [ana['comma_include_sentence_rate_per_text'] for ana in qwen_comma_ana]
-    qwen_num_comma_include_sentences_per_text = [ana['num_comma_include_sentences_per_text'] for ana in qwen_comma_ana]
-    qwen_total_comma_count_per_text = [ana['total_comma_count_per_text'] for ana in qwen_comma_ana]
-    qwen_avg_comma_usage_rate_per_text = [ana['avg_comma_usage_rate_per_text'] for ana in qwen_comma_ana]
-    qwen_avg_relative_position_per_text = [ana['avg_relative_position_per_text'] for ana in qwen_comma_ana]
-    qwen_std_relative_position_per_text = [ana['std_relative_position_per_text'] for ana in qwen_comma_ana]
-    qwen_avg_segment_length_per_text = [ana['avg_segment_length_per_text'] for ana in qwen_comma_ana]
-    qwen_std_segment_length_per_text = [ana['std_segment_length_per_text'] for ana in qwen_comma_ana]
-    qwen_pos_diversity_score_before_after_comma_per_text = [ana['avg_pos_patterns_diversity_score_per_text'] for ana in qwen_comma_ana]
-    llama_comma_include_sentence_rate_per_text = [ana['comma_include_sentence_rate_per_text'] for ana in llama_comma_ana]
-    llama_num_comma_include_sentences_per_text = [ana['num_comma_include_sentences_per_text'] for ana in llama_comma_ana]
-    llama_total_comma_count_per_text = [ana['total_comma_count_per_text'] for ana in llama_comma_ana]
-    llama_avg_comma_usage_rate_per_text = [ana['avg_comma_usage_rate_per_text'] for ana in llama_comma_ana]
-    llama_avg_relative_position_per_text = [ana['avg_relative_position_per_text'] for ana in llama_comma_ana]
-    llama_std_relative_position_per_text = [ana['std_relative_position_per_text'] for ana in llama_comma_ana]
-    llama_avg_segment_length_per_text = [ana['avg_segment_length_per_text'] for ana in llama_comma_ana]
-    llama_std_segment_length_per_text = [ana['std_segment_length_per_text'] for ana in llama_comma_ana]
-    llama_pos_diversity_score_before_after_comma_per_text = [ana['avg_pos_patterns_diversity_score_per_text'] for ana in llama_comma_ana]
     llm_comma_include_sentence_rate_per_text = [ana['comma_include_sentence_rate_per_text'] for ana in llm_comma_ana]
     llm_num_comma_include_sentences_per_text = [ana['num_comma_include_sentences_per_text'] for ana in llm_comma_ana]
     llm_total_comma_count_per_text = [ana['total_comma_count_per_text'] for ana in llm_comma_ana]
@@ -367,82 +311,40 @@ if __name__ == '__main__':
 
     # Construct data for ML experiment
     human_features = []
-    gpt_features = []
-    solar_features = []
-    qwen_features = []
-    llama_features = []
+    llm_features = []
     for include, usage, position, segment, pos_diversity in zip(human_comma_include_sentence_rate_per_text, human_avg_comma_usage_rate_per_text, human_avg_relative_position_per_text, human_avg_segment_length_per_text, human_pos_diversity_score_before_after_comma_per_text):
         human_features.append([include, usage, position, segment, pos_diversity])
-    for include, usage, position, segment, pos_diversity in zip(gpt_comma_include_sentence_rate_per_text, gpt_avg_comma_usage_rate_per_text, gpt_avg_relative_position_per_text, gpt_avg_segment_length_per_text, gpt_pos_diversity_score_before_after_comma_per_text):
-        gpt_features.append([include, usage, position, segment, pos_diversity])
-    for include, usage, position, segment, pos_diversity in zip(solar_comma_include_sentence_rate_per_text, solar_avg_comma_usage_rate_per_text, solar_avg_relative_position_per_text, solar_avg_segment_length_per_text, solar_pos_diversity_score_before_after_comma_per_text):
-        solar_features.append([include, usage, position, segment, pos_diversity])
-    for include, usage, position, segment, pos_diversity in zip(qwen_comma_include_sentence_rate_per_text, qwen_avg_comma_usage_rate_per_text, qwen_avg_relative_position_per_text, qwen_avg_segment_length_per_text, qwen_pos_diversity_score_before_after_comma_per_text):
-        qwen_features.append([include, usage, position, segment, pos_diversity])
-    for include, usage, position, segment, pos_diversity in zip(llama_comma_include_sentence_rate_per_text, llama_avg_comma_usage_rate_per_text, llama_avg_relative_position_per_text, llama_avg_segment_length_per_text, llama_pos_diversity_score_before_after_comma_per_text):
-        llama_features.append([include, usage, position, segment, pos_diversity])
+    for include, usage, position, segment, pos_diversity in zip(llm_comma_include_sentence_rate_per_text, llm_avg_comma_usage_rate_per_text, llm_avg_relative_position_per_text, llm_avg_segment_length_per_text, llm_pos_diversity_score_before_after_comma_per_text):
+        llm_features.append([include, usage, position, segment, pos_diversity])
 
     human_ml_data = []
-    gpt_ml_data = []
-    solar_ml_data = []
-    qwen_ml_data = []
-    llama_ml_data = []
-    for text, feature, id in zip(human_texts, human_features, human_id):
+    llm_ml_data = []
+    for text, feature in zip(human_texts, human_features):
         item = {}
         item['text'] = text
         item['feature'] = feature
         item['label'] = 0
         item['written_by'] = 'Human'
-        item['id'] = id
         human_ml_data.append(item)
-    for text, feature, id in zip(gpt_texts, gpt_features, gpt_id):
+    for text, feature in zip(llm_texts, llm_features):
         item = {}
         item['text'] = text
         item['feature'] = feature
         item['label'] = 1
-        item['written_by'] = 'GPT-4o'
-        item['id'] = id
-        gpt_ml_data.append(item)
-    for text, feature, id in zip(solar_texts, solar_features, solar_id):
-        item = {}
-        item['text'] = text
-        item['feature'] = feature
-        item['label'] = 1
-        item['written_by'] = 'Solar'
-        item['id'] = id
-        solar_ml_data.append(item)
-    for text, feature, id in zip(qwen_texts, qwen_features, qwen_id):
-        item = {}
-        item['text'] = text
-        item['feature'] = feature
-        item['label'] = 1
-        item['written_by'] = 'Qwen2'
-        item['id'] = id
-        qwen_ml_data.append(item)
-    for text, feature, id in zip(llama_texts, llama_features, llama_id):
-        item = {}
-        item['text'] = text
-        item['feature'] = feature
-        item['label'] = 1
-        item['written_by'] = 'Llama3.1'
-        item['id'] = id
-        llama_ml_data.append(item)
+        item['written_by'] = 'LLM'
+        llm_ml_data.append(item)
 
     # Data Split
     # human_ml_data를 seed를 사용하여 8:2로 random 하게 자르기 
     # Randomly divide human_ml_data into 8:2 using seed
-    random.seed(args.seed)
+    random.seed(42)
     random.shuffle(human_ml_data)
     train_size = int(len(human_ml_data) * 0.8)
     train_human_ml_data = human_ml_data[:train_size]
-    test_human_ml_data = human_ml_data[train_size:]
 
     # Save the data
     ml_data = {} 
-    ml_data['train'] = train_human_ml_data + gpt_ml_data 
-    ml_data['human_solar_ood'] = test_human_ml_data + solar_ml_data
-    ml_data['human_qwen_ood'] = test_human_ml_data + qwen_ml_data
-    ml_data['human_llama_ood'] = test_human_ml_data + llama_ml_data
+    ml_data['train'] = train_human_ml_data + llm_ml_data 
 
-    with open(args.text_type + '_' + str(args.seed) + '_ml_data.pkl', 'wb') as f: 
+    with open('data/train_ml_data.pkl', 'wb') as f: 
         pickle.dump(ml_data, f)
