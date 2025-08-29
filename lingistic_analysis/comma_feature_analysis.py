@@ -346,5 +346,5 @@ if __name__ == '__main__':
     ml_data = {} 
     ml_data['train'] = train_human_ml_data + llm_ml_data 
 
-    with open('train_ml_data.pkl', 'wb') as f: 
+    with open('data/train_ml_data.pkl', 'wb') as f: 
         pickle.dump(ml_data, f)
