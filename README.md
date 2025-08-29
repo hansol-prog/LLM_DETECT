@@ -1,1 +1,1 @@
-# LLM_Detect
+# LLM_Detect With KatFishNet
