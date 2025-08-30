@@ -256,7 +256,7 @@ def analyze_pos_ngram_diversity(pos):
 
 if __name__ == '__main__':
     # Load the data
-    with open(f"trin_pos_taging_results.pkl", "rb") as f:
+    with open(f"train_pos_taging_results.pkl", "rb") as f:
         sentence_level_ana = pickle.load(f)
     with open('./data/train.json', 'r', encoding='utf-8') as f:
         data = json.load(f) # .loads()가 아닌 .load()를 사용합니다.

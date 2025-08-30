@@ -4,13 +4,14 @@ from konlpy.utils import pprint
 import json 
 import pickle 
 import argparse
+from tqdm import tqdm
 
 if __name__ == '__main__':
     # POS tagger
     kkma = Kkma()
 
     # Load data
-    with open('./data/train.json', 'r', encoding='utf-8') as f:
+    with open('./data/hhhalf_train.json', 'r', encoding='utf-8') as f:
         data = json.load(f) # .loads()가 아닌 .load()를 사용합니다.
     human_texts = []
     llm_texts = []
@@ -23,13 +24,13 @@ if __name__ == '__main__':
     # Sentence segmentation
     human_sentences = [] 
     llm_sentences = []
-    for text in human_texts:
+    for text in tqdm(human_texts, desc="Processing Human Texts"):
         tmp_list = []
         kss_sentences = kss.split_sentences(text)
         for sentence in kss_sentences:
             tmp_list.extend(sentence.split('\n'))
         human_sentences.append(tmp_list)
-    for text in llm_texts:
+    for text in tqdm(llm_texts, desc="Processing LLM Texts"):
         tmp_list = []
         kss_sentences = kss.split_sentences(text)
         for sentence in kss_sentences:
