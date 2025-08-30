@@ -2,7 +2,7 @@ import json
 import pickle 
 import numpy as np
 import random 
-import argparse
+from tqdm import tqdm
 
 # 입력: 글 1개에 대한 문장, 형태소, 품사 정보
 # Input: Sentence, Morpheme, and Part-of-Speech Information for a Single Text
@@ -283,10 +283,10 @@ if __name__ == '__main__':
     llm_comma_ana = []
     human_pos_ngram_ana = []
     llm_pos_ngram_ana = []
-    for human_s, human_m, human_p in zip(human_sentences, human_morphs, human_pos):
+    for human_s, human_m, human_p in tqdm(zip(human_sentences, human_morphs, human_pos), desc="Analyzing Human Texts"):
         human_comma_ana.append(analyze_comma_usage(human_s, human_m, human_p))
         human_pos_ngram_ana.append(analyze_pos_ngram_diversity(human_p))
-    for llm_s, llm_m, llm_p in zip(llm_sentences, llm_morphs, llm_pos):
+    for llm_s, llm_m, llm_p in tqdm(zip(llm_sentences, llm_morphs, llm_pos),desc="Analyzing LLM Texts"):
         llm_comma_ana.append(analyze_comma_usage(llm_s, llm_m, llm_p))
         llm_pos_ngram_ana.append(analyze_pos_ngram_diversity(llm_p))
 
